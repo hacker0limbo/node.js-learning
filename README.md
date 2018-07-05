@@ -48,8 +48,11 @@ sudo npm install -g supervisor
 ### app.use('/', function)
 
 注册中间件的方法, 用法为
+
 ```js
 app.use('/', (req, res, next) => {
     next() // 可选
 })
 ```
+
+其中, 第一个参数为网页显示的路由路径, 比如首页就是`localhost`, 由`index.js`控制, 后面可以有其他路由, 比如`/about`, 那么参数应该写为`/about`, 依次类推
