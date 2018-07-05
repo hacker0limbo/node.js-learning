@@ -24,7 +24,7 @@ app.listen(3000, () => {
     console.log('App listening on port 3000!');
 })
 ```
-终端中输入`node index.js`, 浏览器打开输入`localhost:3000`访问服务器
+终端中输入`node index.js`, 浏览器打开输入`localhost:3000`访问服务器, 页面会显示`Hello World`
 
 ### supervisor
 
@@ -36,3 +36,20 @@ sudo npm install -g supervisor
 ```
 
 运行`supervisor index.js`启动程序
+
+## 核心概念
+
+### 中间件(middleware)
+
+处理`http`请求的函数, 特点为一个中间件处理完, 再传递给下一个中间件, `app`实例在运行过程中会调用一系列中间件
+
+用法为, 每个中间件从`app`实例接受3个参数, req(http 请求), res(http 回应), next(回调函数, 代表下一个中间件), 每个中间件对请求(req)进行加工, 决定是否调用`next`, 然后将`req`传递给下一个中间件
+
+### app.use('/', function)
+
+注册中间件的方法, 用法为
+```js
+app.use('/', (req, res, next) => {
+    next() // 可选
+})
+```
