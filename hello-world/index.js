@@ -1,5 +1,10 @@
 const express = require('express')
 const app = express()
+    // const indexRouter = require('./routes/index')
+    // const userRouter = require('./routes/about')
+
+// app.use('/', indexRouter)
+// app.use('/about', userRouter)
 
 
 // 配置静态文件目录
