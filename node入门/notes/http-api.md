@@ -55,4 +55,25 @@ const server = http.createServer((req, res) => {
 
 官网如下:
 > `http.request()` 返回一个 `http.ClientRequest` 类的实例(也就是 [4])
-> 可选的 callback 参数会作为单次监听器被添加到 'response' 事件(也就是回调函数默认为 [4]下面的)
+> 可选的 callback 参数会作为单次监听器被添加到 'response' 事件(也就是回调函数默认为 [4]下面的 response 事件)
+
+实例如下:
+```js
+const request = htt.request(options, (res) => {
+    console.log(`状态码: ${res.statusCode}`)
+    res.on('end', () => {
+        console.log('响应中已无数据')
+    })
+})
+
+request.end()
+```
+查看 [4]
+
+### [4] http.ClientRequest 类 -> response 事件 
+ 根据官网:
+ > 只有一个参数 `response`, 是 `http.IncomingMessage`的实例
+ > 当请求的响应被接收到时触发。 该事件只触发一次。
+
+### [3] http.get(options[, callback])
+该方法与`http.request`相同, 只不过默认设置了 method 为 get
