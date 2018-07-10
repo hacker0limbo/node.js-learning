@@ -6,7 +6,6 @@ const userRouter = require('./routes/about')
 app.use('/', indexRouter.router)
 app.use('/about', userRouter.router)
 
-
 // // 配置静态文件目录
 // app.use(express.static('public'))
 
