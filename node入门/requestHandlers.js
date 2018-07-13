@@ -6,10 +6,12 @@
 
 const start = () => {
     console.dir(`Request handler 'start' was called.`, { colors: true })
+    return 'Start'
 }
 
 const upload = () => {
     console.dir(`Request handler 'upload' was called.`, { colors: true })
+    return 'Upload'
 }
 
 module.exports = {

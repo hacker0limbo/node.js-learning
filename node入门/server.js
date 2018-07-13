@@ -10,10 +10,9 @@ const start = (route, handle) => {
         console.log(pathname);
         // console.dir(`Request for ${pathname} received`, { colors: true });
 
-        route(handle, pathname)
-
         res.writeHead(200, { 'Content-type': 'text/plain' })
-        res.write('Hello World')
+        let content = route(handle, pathname)
+        res.write(content)
         res.end()
     })
 
