@@ -1,11 +1,14 @@
-const route = (handle, pathname) => {
+const route = (handle, pathname, res) => {
     console.dir(`About to route a request for ${pathname}`, { colors: true })
         // 判断 handle 对象里面方法是否存在(即请求处理程序)
     if (typeof(handle[pathname]) === 'function') {
-        return handle[pathname]()
+        handle[pathname](res)
     } else {
         console.dir(`No request handler found for ${pathname}`, { colors: true })
-        return '404'
+        res.writeHead(200, { 'Content-type': 'text/plain' })
+        res.write('404')
+        res.end()
+
     }
 }
 

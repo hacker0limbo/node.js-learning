@@ -10,10 +10,9 @@ const start = (route, handle) => {
         console.log(pathname);
         // console.dir(`Request for ${pathname} received`, { colors: true });
 
-        res.writeHead(200, { 'Content-type': 'text/plain' })
-        let content = route(handle, pathname)
-        res.write(content)
-        res.end()
+        // 服务器发送给客户端的响应的内容
+        route(handle, pathname, res)
+
     })
 
     server.listen(8888, () => {
