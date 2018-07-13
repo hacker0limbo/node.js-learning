@@ -29,7 +29,7 @@
  */
 
 const querystring = require("querystring");
-
+const MarkdownIt = require('markdown-it')
 
 const start = (res) => {
     console.dir(`Request handler 'start' was called.`, { colors: true })
@@ -40,6 +40,7 @@ const start = (res) => {
                 <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
             </head>
             <body>
+                <h3>Markdown Parser</h3>
                 <form action="/upload" method="post">
                     <textarea name="text" rows="20" cols="60"></textarea>
                     <input type="submit" value="Submit text" />
@@ -56,10 +57,12 @@ const start = (res) => {
 
 const upload = (res, postData) => {
     let data = querystring.parse(postData).text
+    let md = new MarkdownIt()
+    let mdData = md.render(data)
 
     console.dir(`Request handler 'upload' was called.`, { colors: true })
-    res.writeHead(200, { 'Content-type': 'text/plain' })
-    res.write(`You have sent: ${data}`)
+    res.writeHead(200, { 'Content-type': 'text/html' })
+    res.write(`Your Result: ${mdData}`)
     res.end()
 
 }
