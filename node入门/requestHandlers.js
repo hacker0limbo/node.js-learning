@@ -30,6 +30,9 @@
 
 const querystring = require("querystring");
 const MarkdownIt = require('markdown-it')
+const fs = require('fs')
+const formidable = require('formidable')
+
 
 const start = (res) => {
     console.dir(`Request handler 'start' was called.`, { colors: true })
@@ -40,10 +43,10 @@ const start = (res) => {
                 <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
             </head>
             <body>
-                <h3>Markdown Parser</h3>
-                <form action="/upload" method="post">
-                    <textarea name="text" rows="20" cols="60"></textarea>
-                    <input type="submit" value="Submit text" />
+                <h3>图片上传</h3>
+                <form action="/upload" enctype="multipart/form-data" method="post">
+                    <input type="file" name="upload">
+                    <input type="submit" value="Upload file">
                 </form>
             </body>
         </html>
@@ -52,22 +55,44 @@ const start = (res) => {
     res.writeHead(200, { 'Content-type': 'text/html' })
     res.write(body)
     res.end()
-
 }
 
-const upload = (res, postData) => {
-    let data = querystring.parse(postData).text
-    let md = new MarkdownIt()
-    let mdData = md.render(data)
+const upload = (res, req) => {
+    // let data = querystring.parse(postData).text
+    // let md = new MarkdownIt()
+    // let mdData = md.render(data)
 
-    console.dir(`Request handler 'upload' was called.`, { colors: true })
-    res.writeHead(200, { 'Content-type': 'text/html' })
-    res.write(`Your Result: ${mdData}`)
-    res.end()
+    // console.dir(`Request handler 'upload' was called.`, { colors: true })
+    // res.writeHead(200, { 'Content-type': 'text/html' })
+    // res.write(`Your Result: ${mdData}`)
+    // res.end()
+    let form = new formidable.IncomingForm()
+    form.parse(req, (error, fields, files) => {
+        fs.renameSync(files.upload.path, './tmp/test.png')
+        res.writeHead(200, { "Content-Type": "text/html" });
+        res.write("received image:<br>");
+        res.write("<img src='/show'>");
+        res.end();
+    })
+}
 
+const show = (res) => {
+    console.dir(`Request handler 'show' was called `, { colors: true })
+    fs.readFile('./tmp/test.png', 'binary', (error, file) => {
+        if (error) {
+            res.writeHead(500, { 'Content-Type': 'text/plain' })
+            res.write(error + '\n')
+            res.end()
+        } else {
+            res.writeHead(200, { 'Content-Type': 'image/png' })
+            res.write(file, 'binary')
+            res.end()
+        }
+    })
 }
 
 module.exports = {
     start: start,
-    upload: upload
+    upload: upload,
+    show: show
 }

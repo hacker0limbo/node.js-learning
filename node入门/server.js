@@ -16,23 +16,24 @@ const start = (route, handle) => {
     // http.Server 是一个类
     // http.createServer() 返回一个 http.Server 实例, 该实例有 server.listen() 方法, 用于开启服务器的监听
     const server = http.createServer((req, res) => {
-        let postData = ''
-            // 加入对 url 的识别
+        // let postData = ''
+        //     // 加入对 url 的识别
         let pathname = url.parse(req.url).pathname;
-        console.log(pathname);
-        // console.dir(`Request for ${pathname} received`, { colors: true });
+        // console.log(pathname);
+        // // console.dir(`Request for ${pathname} received`, { colors: true });
 
-        req.setEncoding('utf8')
+        // req.setEncoding('utf8')
 
-        req.addListener('data', (postDataChunk) => {
-            postData += postDataChunk
-        })
+        // req.addListener('data', (postDataChunk) => {
+        //     postData += postDataChunk
+        // })
 
-        req.addListener('end', () => {
-            // 服务器发送给客户端的响应的内容
-            route(handle, pathname, res, postData)
+        // req.addListener('end', () => {
+        //     // 服务器发送给客户端的响应的内容
+        //     route(handle, pathname, res, postData)
 
-        })
+        // })
+        route(handle, pathname, res, req)
 
     })
 
