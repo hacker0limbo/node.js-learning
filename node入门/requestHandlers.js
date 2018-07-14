@@ -58,14 +58,6 @@ const start = (res) => {
 }
 
 const upload = (res, req) => {
-    // let data = querystring.parse(postData).text
-    // let md = new MarkdownIt()
-    // let mdData = md.render(data)
-
-    // console.dir(`Request handler 'upload' was called.`, { colors: true })
-    // res.writeHead(200, { 'Content-type': 'text/html' })
-    // res.write(`Your Result: ${mdData}`)
-    // res.end()
     let form = new formidable.IncomingForm()
     form.parse(req, (error, fields, files) => {
         fs.renameSync(files.upload.path, './tmp/test.png')
@@ -94,5 +86,5 @@ const show = (res) => {
 module.exports = {
     start: start,
     upload: upload,
-    show: show
+    show: show,
 }

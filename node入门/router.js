@@ -8,7 +8,6 @@ const route = (handle, pathname, res, req) => {
         res.writeHead(200, { 'Content-type': 'text/plain' })
         res.write('404')
         res.end()
-
     }
 }
 
