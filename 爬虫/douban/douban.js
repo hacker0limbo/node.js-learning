@@ -35,9 +35,12 @@ const movieFromDiv = (movieItemDiv) => {
 
 
 const saveMovie = (moviesArray) => {
-    const path = 'douban.json'
-        // 将 movies 这个数组解析为 json 格式, 另外第三个参数是为了增加可读性
-    const s = JSON.stringify(moviesArray, null, 2)
+    const path = 'douban.txt'
+        // 每次将这个数组存入大的数组里面
+    movieData.push(moviesArray)
+
+    // 将 movies 这个数组解析为 json 格式, 另外第三个参数是为了增加可读性
+    const s = JSON.stringify(movieData, null, 2)
     fs.writeFile(path, s, (error) => {
         if (error !== null) {
             console.log('*** 写入文件错误', error);
@@ -53,7 +56,7 @@ const moviesFromUrl = (url) => {
     request(url, (error, response, body) => {
         if (error === null && response.statusCode == 200) {
             const e = cheerio.load(body)
-            var moviesArray = []
+            const moviesArray = []
             const movieItemDivs = e('.item')
 
             for (let i = 0; i < movieItemDivs.length; i++) {
@@ -62,10 +65,8 @@ const moviesFromUrl = (url) => {
                 const movieData = movieFromDiv(movieItemDiv)
                 moviesArray.push(movieData)
             }
-            // 每次将这个数组存入大的数组里面
-            movieData.push(moviesArray)
-                // 保存 movies 数组到文件中
-            saveMovie(movieData)
+            // 保存 movies 数组到文件中
+            saveMovie(moviesArray)
         } else {
             console.log('*** ERROR 请求失败 ', error)
         }

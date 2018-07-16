@@ -66,3 +66,7 @@ request('http://www.itbilu.com', (error, response, body) => {
     }
 })
 ```
+
+## 注意点
+
+`fs.writeFile()`每次都会将新内容覆盖原始内容, `fs.appendFile()`是在原始内容的基础上添加新内容
