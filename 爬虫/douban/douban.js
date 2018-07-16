@@ -2,6 +2,9 @@ const request = require('request')
 const cheerio = require('cheerio')
 const fs = require('fs')
 
+// 用一个大数组保存所有数据, 因为每次请求都是返回一个新的长度为 25 的数组
+const movieData = []
+
 class Movie {
     constructor() {
         this.name = ''
@@ -30,11 +33,12 @@ const movieFromDiv = (movieItemDiv) => {
 }
 
 
+
 const saveMovie = (moviesArray) => {
     const path = 'douban.json'
         // 将 movies 这个数组解析为 json 格式, 另外第三个参数是为了增加可读性
     const s = JSON.stringify(moviesArray, null, 2)
-    fs.appendFile(path, s, (error) => {
+    fs.writeFile(path, s, (error) => {
         if (error !== null) {
             console.log('*** 写入文件错误', error);
         } else {
@@ -49,18 +53,19 @@ const moviesFromUrl = (url) => {
     request(url, (error, response, body) => {
         if (error === null && response.statusCode == 200) {
             const e = cheerio.load(body)
-            const moviesArray = {}
+            var moviesArray = []
             const movieItemDivs = e('.item')
 
             for (let i = 0; i < movieItemDivs.length; i++) {
                 let element = movieItemDivs[i]
                 const movieItemDiv = e(element).html()
                 const movieData = movieFromDiv(movieItemDiv)
-                    // moviesArray.push(movieData)
-                moviesArray[i] = movieData
+                moviesArray.push(movieData)
             }
-            // 保存 movies 数组到文件中
-            saveMovie(moviesArray)
+            // 每次将这个数组存入大的数组里面
+            movieData.push(moviesArray)
+                // 保存 movies 数组到文件中
+            saveMovie(movieData)
         } else {
             console.log('*** ERROR 请求失败 ', error)
         }
@@ -78,9 +83,6 @@ const __main = () => {
         console.log(url);
         moviesFromUrl(url)
     }
-
-    // const url = 'https://movie.douban.com/top250'
-    // moviesFromUrl(url)
 }
 
 
