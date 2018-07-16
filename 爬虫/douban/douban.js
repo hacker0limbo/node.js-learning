@@ -31,7 +31,7 @@ const movieFromDiv = (movieItemDiv) => {
 
 
 const saveMovie = (moviesArray) => {
-    const path = 'douban.txt'
+    const path = 'douban.json'
         // 将 movies 这个数组解析为 json 格式, 另外第三个参数是为了增加可读性
     const s = JSON.stringify(moviesArray, null, 2)
     fs.appendFile(path, s, (error) => {
@@ -49,14 +49,15 @@ const moviesFromUrl = (url) => {
     request(url, (error, response, body) => {
         if (error === null && response.statusCode == 200) {
             const e = cheerio.load(body)
-            const moviesArray = []
+            const moviesArray = {}
             const movieItemDivs = e('.item')
 
             for (let i = 0; i < movieItemDivs.length; i++) {
                 let element = movieItemDivs[i]
                 const movieItemDiv = e(element).html()
                 const movieData = movieFromDiv(movieItemDiv)
-                moviesArray.push(movieData)
+                    // moviesArray.push(movieData)
+                moviesArray[i] = movieData
             }
             // 保存 movies 数组到文件中
             saveMovie(moviesArray)
@@ -71,8 +72,8 @@ const moviesFromUrl = (url) => {
 const __main = () => {
     // 这是主函数
     // 下载网页, 解析出电影信息, 保存到文件
-    for (var i = 25; i <= 0; i -= 25) {
-        var url = 'https://movie.douban.com/top250'
+    for (let i = 0; i <= 25; i += 25) {
+        let url = 'https://movie.douban.com/top250'
         url += `?start=${i}&filter=`
         console.log(url);
         moviesFromUrl(url)
