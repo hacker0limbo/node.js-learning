@@ -1,7 +1,6 @@
 const request = require('request')
 const cheerio = require('cheerio')
 const fs = require('fs')
-const url = require('url')
 
 class Movie {
     constructor() {
@@ -35,7 +34,7 @@ const saveMovie = (moviesArray) => {
     const path = 'douban.txt'
         // 将 movies 这个数组解析为 json 格式, 另外第三个参数是为了增加可读性
     const s = JSON.stringify(moviesArray, null, 2)
-    fs.writeFile(path, s, (error) => {
+    fs.appendFile(path, s, (error) => {
         if (error !== null) {
             console.log('*** 写入文件错误', error);
         } else {
@@ -47,7 +46,7 @@ const saveMovie = (moviesArray) => {
 
 
 const moviesFromUrl = (url) => {
-    request(url, function(error, response, body) {
+    request(url, (error, response, body) => {
         if (error === null && response.statusCode == 200) {
             const e = cheerio.load(body)
             const moviesArray = []
@@ -72,13 +71,15 @@ const moviesFromUrl = (url) => {
 const __main = () => {
     // 这是主函数
     // 下载网页, 解析出电影信息, 保存到文件
-    var urlName = url.parse('https://movie.douban.com/top250')
-    for (let i = 0; i <= 250; i += 25) {
-        var eachPathName = `?start=${i}&filter=`
-        urlName.pathname = eachPathName
-        console.log(urlName.href);
-        // moviesFromUrl(urlName.href)
+    for (var i = 25; i <= 0; i -= 25) {
+        var url = 'https://movie.douban.com/top250'
+        url += `?start=${i}&filter=`
+        console.log(url);
+        moviesFromUrl(url)
     }
+
+    // const url = 'https://movie.douban.com/top250'
+    // moviesFromUrl(url)
 }
 
 
