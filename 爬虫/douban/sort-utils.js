@@ -4,7 +4,7 @@ const sortByScore = (array) => {
     })
 }
 
-const sortByScore = (array) => {
+const sortByRank = (array) => {
     array.sort((o1, o2) => {
         return o1.ranking - o2.ranking
     })

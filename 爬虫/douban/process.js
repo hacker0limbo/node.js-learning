@@ -1,16 +1,5 @@
 const fs = require('fs')
-
-
-const readFile = (path) => {
-    fs.readFile(path, (error, data) => {
-        if (error !== null) {
-            console.log('*** 读取文件失败');
-        } else {
-            // data 是一个 json 字符串
-            processFile(data)
-        }
-    })
-}
+const fileProcess = require('./fileProcess')
 
 
 const processFile = (data) => {
@@ -23,20 +12,16 @@ const processFile = (data) => {
         intactMovies = intactMovies.concat(eachPage)
     }
     const newContent = JSON.stringify(intactMovies, null, 2)
+    console.log('新数组长度', intactMovies.length);
 
-    fs.writeFile('new-douban.json', newContent, (error) => {
-        if (error !== null) {
-            console.log('*** 写入新文件失败');
-        } else {
-            console.log('新数组长度', intactMovies.length);
-            console.log('*** 写入新文件成功');
-        }
-    })
+    const writePath = './new-douban.json'
+    fileProcess.writeFile(writePath, newContent)
 }
 
 
 const __main = () => {
-    readFile('./douban.json')
+    const readPath = './douban.json'
+    fileProcess.readFile(readPath, processFile)
 }
 
 __main()
