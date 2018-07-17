@@ -9,3 +9,8 @@ const sortByRank = (array) => {
         return o1.ranking - o2.ranking
     })
 }
+
+module.exports = {
+    sortByScore: sortByScore,
+    sortByRank: sortByRank
+}
