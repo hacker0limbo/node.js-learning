@@ -4,9 +4,6 @@
 - `douban.js` 用于爬取网页
 - `process.js` 用于整理数据
 
-TODO:
-- 将 readFile 抽成一个文件, process 部分用回调函数传进去, 模块导出
-- sort 部分写成一系列函数, 模块导出
 
 ## 分析
 
@@ -98,3 +95,4 @@ request('http://www.itbilu.com', (error, response, body) => {
 - `fs.writeFile()`每次都会将新内容覆盖原始内容, `fs.appendFile()`是在原始内容的基础上添加新内容
 - `array.concat()`返回一个新数组, 原数组不变
 - `readFile()`是异步处理, 因此需要在回调函数里面处理数据
+- `array.sort(callback)`原数组改变

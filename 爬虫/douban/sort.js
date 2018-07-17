@@ -4,9 +4,9 @@ const fileProcess = require('./fileProcess')
 
 const processFile = (data) => {
     const integratedArr = JSON.parse(data)
-    const sortedArr = sortUtils.sortByScore(integratedArr)
-        // console.log(sortedArr.length);
-    const sortedArrJson = JSON.stringify(sortedArr, null, 2)
+    sortUtils.sortByScore(integratedArr)
+    console.log(integratedArr.length);
+    const sortedArrJson = JSON.stringify(integratedArr, null, 2)
     const writePath = './douban_sorted.json'
     fileProcess.writeFile(writePath, sortedArrJson)
 }
