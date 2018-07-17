@@ -40,8 +40,8 @@ html 如下:
 ```
 
 ```js
-var cheerio = require('cheerio');
-var e = cheerio.load('<ul>...</ul>');
+const cheerio = require('cheerio');
+const e = cheerio.load('<ul>...</ul>');
 // e 的选择器和 jquery 以及 querySelectorAll()用法一样, 里面匹配的是 css 选择器
 ```
 
@@ -93,3 +93,4 @@ request('http://www.itbilu.com', (error, response, body) => {
 
 - `fs.writeFile()`每次都会将新内容覆盖原始内容, `fs.appendFile()`是在原始内容的基础上添加新内容
 - `array.concat()`返回一个新数组, 原数组不变
+- `readFile()`是异步处理, 因此需要在回调函数里面处理数据
