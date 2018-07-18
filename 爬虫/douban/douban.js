@@ -35,7 +35,7 @@ const movieFromDiv = (movieItemDiv) => {
 
 
 const saveMovie = (moviesArray) => {
-    const path = 'douban.txt'
+    const path = './douban_data/douban_original.json'
         // 每次将这个数组存入大的数组里面
     movieData.push(moviesArray)
 

@@ -7,14 +7,14 @@ const processFile = (data) => {
     sortUtils.sortByScore(integratedArr)
     console.log(integratedArr.length);
     const sortedArrJson = JSON.stringify(integratedArr, null, 2)
-    const writePath = './douban_sorted.json'
+    const writePath = './douban_data/douban_sorted.json'
     fileProcess.writeFile(writePath, sortedArrJson)
 }
 
 
 
 const __main = () => {
-    const readPath = './douban_integrated.json'
+    const readPath = './douban_data/douban_integrated.json'
     fileProcess.readFile(readPath, processFile)
 }
 
