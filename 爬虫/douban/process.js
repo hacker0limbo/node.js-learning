@@ -1,5 +1,5 @@
 // const fs = require('fs')
-const fileProcess = require('./fileProcess')
+const fileProcess = require('./utils/utils_process_file')
 
 const processFile = (data) => {
     const unIntactMovies = JSON.parse(data)

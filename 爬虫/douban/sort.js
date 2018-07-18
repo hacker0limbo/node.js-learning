@@ -1,5 +1,5 @@
-const sortUtils = require('./sort_utils')
-const fileProcess = require('./fileProcess')
+const sortUtils = require('./utils/utils_sort_file')
+const fileProcess = require('./utils/utils_process_file')
 
 
 const processFile = (data) => {
