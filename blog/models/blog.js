@@ -44,8 +44,9 @@ class BlogModel {
 
 class Blog {
     constructor(blog) {
-        this.id = blog.id || 0
+        this.id = blog.id
         this.title = blog.title || ''
+        this.author = blog.author || '小夜勃'
         this.content = blog.content || ''
         this.created_time = Math.floor(new Date() / 1000)
     }

@@ -4,14 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Blog</title>
-    <link rel="stylesheet" href="./css/blog.css">
+    <!-- 静态文件放在 localhost:5000/css/xxx.css -->
+    <link rel="stylesheet" href="/css/blog.css">
 </head>
 
 <body>
     <h1>博客</h1>
     <div class="blog-icon">
-        <img src="./img/blog_icon.png" alt="">
+        <img src="/img/blog_icon.png" alt="">
     </div>
+    <div class="blog-new">
+        <label>
+            博文标题
+            <input id='id-input-title' type="text" value="">
+        </label>
+        <br>
+        <label>
+            博文作者
+            <input id='id-input-author' type="text" value="">
+        </label>
+        <br>
+        <label>
+            博文内容<br>
+            <textarea id='id-input-content' type="text" value="" rows="20" cols="80"></textarea>
+        </label>
+        <br>
+        <button id='id-button-submit'>发表新博文</button>
+    </div>
+
     <div class="blog-container">
         <!-- <div class="blog-cell">
             <title>标题</title>
@@ -20,7 +40,11 @@
             </div>
         </div> -->
     </div>
-
+    <script src="/js/dom_utils.js"></script>
+    <script src="/js/blog_template.js"></script>
+    <script src="/js/blog_api.js"></script>
+    <script src="/js/controller.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 
 </html>

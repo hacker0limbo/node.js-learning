@@ -9,6 +9,9 @@
     "author": "stephen",
     "license": "ISC",
     "dependencies": {
-        "express": "^4.16.4"
+        "express": "^4.16.4",
+        "express-es6-template-engine": "^2.1.7",
+        "highlight.js": "^9.13.1",
+        "markdown-it": "^8.4.2"
     }
 }

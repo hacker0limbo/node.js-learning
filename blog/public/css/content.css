@@ -1,0 +1,84 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    /* justify-content: center; */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+header,
+article {
+    margin: 1rem 0;
+}
+
+
+/* markdown 设置 */
+
+code {
+    font-family: 'Monaco', 'Menlo';
+    padding: 2px 4px;
+    font-size: 80%;
+    background-color: #f9f2f4;
+    color: #c7254e;
+    border-radius: 4px;
+}
+
+a {
+    color: #3eaf7c;
+}
+
+blockquote {
+    background-color: #f3f5f7;
+    border-color: #42b983;
+    padding: 0.1rem 1.5rem;
+    border-left-width: 0.5rem;
+    border-left-style: solid;
+    margin: 1rem 0;
+}
+
+img {
+    width: 10vw;
+}
+
+ins {
+    color: orange;
+}
+
+del {
+    color: grey;
+}
+
+table {
+    margin-bottom: 20px;
+    background-color: transparent;
+    border-spacing: 0;
+    border-collapse: collapse;
+    border-color: grey;
+}
+
+thead {
+    margin: 10px 0;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143
+}
+
+tr:nth-child(odd)>td {
+    background-color: #f9f9f9;
+}
+
+td {
+    padding: 8px;
+    line-height: 1.42857143;
+    border-top: 1px solid #ddd;
+    vertical-align: top;
+}

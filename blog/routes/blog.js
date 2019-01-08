@@ -8,37 +8,26 @@ router.get('/all', (req, res) => {
     res.json(blogs)
 })
 
-router.post('/api/blog/add', (req, res) => {
+router.post('/add', (req, res) => {
     const form = req.body
+    const id = blogModel.getBlogs().length + 1
+    form['id'] = id
     const newBlog = new Blog(form)
 
-    // 写入数据文件中
-    // blogModel.saveBlogs()
+    blogModel.addBlog(newBlog)
+        // 写入数据文件中
+        // blogModel.saveBlogs()
     res.json(newBlog)
 })
 
-router.get('/api/blog/content/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     const blogId = req.params.id
     const index = blogId - 1
     const blog = blogModel.getBlog(index)
-    const content = blog['content']
 
     // 写入数据文件中
     // blogModel.saveBlogs()
-    res.json(content)
-})
-
-router.get('/blog/content/:id', (req, res) => {
-    const blogId = req.params.id
-    const index = blogId - 1
-    const blog = blogModel.getBlog(index)
-    const content = blog['content']
-
-    // 写入数据文件中
-    // blogModel.saveBlogs()
-    // res.render('content', { content: content }, (req, res) => {
-    //     console.log('内容为: ', content)
-    // })
+    res.json(blog)
 })
 
 

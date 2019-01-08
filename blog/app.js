@@ -1,14 +1,20 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const es6Renderer = require('express-es6-template-engine')
 
+// routers
 const indexRouter = require('./routes/index.js')
 const blogRouter = require('./routes/blog.js')
 
 app.use(bodyParser.json())
 app.use(express.static('public'))
 
-// 路由
+app.engine('html', es6Renderer)
+app.set('views', 'views')
+app.set('view engine', 'html')
+
+// 使用路由
 app.use('/', indexRouter.router)
 app.use('/api/blog', blogRouter.router)
 
