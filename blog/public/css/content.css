@@ -13,7 +13,17 @@ header {
 
 header,
 article {
+    width: 50vw;
+    border: 0.5px solid lightblue;
     margin: 1rem 0;
+}
+
+header {
+    padding: 1vw;
+}
+
+article {
+    padding: 3vw;
 }
 
 
