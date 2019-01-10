@@ -11,7 +11,7 @@ body {
 }
 
 .blog-container {
-    width: 300px;
+    width: 30vw;
     margin: 1rem 0;
     text-align: center;
 }
@@ -25,6 +25,11 @@ body {
 
 .blog-new {
     text-align: center;
+}
+
+.blog-delete {
+    cursor: pointer;
+    color: purple;
 }
 
 #id-input-content {

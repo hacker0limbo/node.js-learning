@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const blogModel = require('../models/blog.js').BlogModel
-const Blog = require('../models/blog.js').Blog
+const blogModel = require('../models/blog.js').blogModel
+const commentModel = require('../models/comment.js').commentModel
 const utils = require('../utils/utils.js')
 const hljs = require('highlight.js')
 
@@ -27,27 +27,48 @@ router.get('/', (req, res) => {
     const options = {
         root: __dirname + '/../views/',
     }
-    res.sendFile('index.html', options)
+    const bs = blogModel.getBlogs()
+    const blogs = bs.map(b => ({
+        id: b.id,
+        author: b.author,
+        time: utils.time(b.created_time),
+        title: b.title,
+        content: b.content
+    }))
+
+    res.render('index', {
+        locals: {
+            blogs: blogs
+        }
+    })
 })
 
 router.get('/blog/:id', (req, res) => {
     const blogId = req.params.id
     const index = blogId - 1
-    const blog = blogModel.getBlog(index)
+    const b = blogModel.getBlog(index)
+    const cs = commentModel.getCommentsByBlogId(blogId)
 
-    // 使用 es6 render 引擎
+    const comments = cs.map(c => ({
+        id: c.id,
+        blog_id: c.blog_id,
+        author: c.author,
+        content: c.content,
+        time: utils.time(c.created_time)
+    }))
+
+    const blog = {...b }
+    blog['time'] = utils.time(b.created_time)
+    blog['content'] = md.render(b.content)
+        // blog['content'] = md.render(b.content)
+        // 使用 es6 render 引擎
     res.render('content', {
         locals: {
-            id: blog.id,
-            author: blog.author,
-            created_time: utils.time(blog.created_time),
-            title: blog.title,
-            content: md.render(blog.content)
+            blog: blog,
+            comments: comments
         }
     })
 })
 
 
-module.exports = {
-    router: router
-}
+module.exports = router

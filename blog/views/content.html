@@ -10,18 +10,49 @@
 
 <body>
     <img src="/img/content_icon.png" alt="博客正文图片">
-    <h2>${title}</h2>
-    <header>
-        <span>id: ${id}</span>
-        <span>作者: ${author}</span>
-        <span>创作时间: ${created_time}</span>
-    </header>
-    <article>
-        <section>${content}</section>
-    </article>
+    <section class="blog-content">
+        <h2>${blog.title}</h2>
+        <header>
+            <span>id: ${blog.id}</span>
+            <span>作者: ${blog.author}</span>
+            <span>创作时间: ${blog.time}</span>
+        </header>
+        <article>
+            <section>${blog.content}</section>
+        </article>
+    </section>
+
+    <hr class="line">
+
+    <section class="blog-comment">
+        <div class="comment-new">
+            <img src="/img/comment_user.png" alt="user"> 用户名:
+            <input type="text" class="comment-author" size="8"> 内容:
+            <input type="text" class="comment-content">
+            <button class="comment-submit">发布评论</button>
+        </div>
+        <h3>评论列表</h3>
+        <div class="comment-list">
+            ${comments.map(c => `
+            <div class="comment-cell">
+                <img src="/img/limbo.png" alt="user">
+                <span>${c.author}:</span>
+                <span>${c.content}</span>
+                <span>${c.time}</span>
+                <button class="comment-delete">删除</button>
+            </div>
+            `).join('')}
+
+        </div>
+    </section>
+
     <footer>
         <a href="../../">回到主页</a>
     </footer>
+
+    <script src="/js/dom_utils.js"></script>
+    <script src="/js/comment_api.js"></script>
+    <script src="/js/comment.js"></script>
 </body>
 
 </html>

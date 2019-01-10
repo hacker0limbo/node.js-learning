@@ -1,6 +1,6 @@
-class BlogApi {
+class CommentApi {
     constructor() {
-        this.basePath = '/api/blog/'
+        this.basePath = '/api/comment/'
     }
 
     all(callback) {
@@ -35,4 +35,5 @@ class BlogApi {
                 callback(data)
             })
     }
+
 }

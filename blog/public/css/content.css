@@ -6,30 +6,33 @@ body {
     /* justify-content: center; */
 }
 
-header {
+.blog-content {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
 }
 
-header,
-article {
+.blog-content header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1vw;
+}
+
+.blog-content header,
+.blog-content article {
     width: 50vw;
     border: 0.5px solid lightblue;
     margin: 1rem 0;
 }
 
-header {
-    padding: 1vw;
-}
-
-article {
+.blog-content article {
     padding: 3vw;
 }
 
 
 /* markdown 设置 */
 
-code {
+.blog-content code {
     font-family: 'Monaco', 'Menlo';
     padding: 2px 4px;
     font-size: 80%;
@@ -38,11 +41,16 @@ code {
     border-radius: 4px;
 }
 
-a {
+.blog-content .hljs {
+    color: initial;
+    background-color: #fafafa;
+}
+
+.blog-content a {
     color: #3eaf7c;
 }
 
-blockquote {
+.blog-content blockquote {
     background-color: #f3f5f7;
     border-color: #42b983;
     padding: 0.1rem 1.5rem;
@@ -51,19 +59,19 @@ blockquote {
     margin: 1rem 0;
 }
 
-img {
-    width: 10vw;
+.blog-content img {
+    width: 8vw;
 }
 
-ins {
+.blog-content ins {
     color: orange;
 }
 
-del {
+.blog-content del {
     color: grey;
 }
 
-table {
+.blog-content table {
     margin-bottom: 20px;
     background-color: transparent;
     border-spacing: 0;
@@ -71,24 +79,67 @@ table {
     border-color: grey;
 }
 
-thead {
+.blog-content thead {
     margin: 10px 0;
     vertical-align: middle;
     border-color: inherit;
 }
 
-thead>tr>th {
+.blog-content thead>tr>th {
     padding: 8px;
     line-height: 1.42857143
 }
 
-tr:nth-child(odd)>td {
+.blog-content tr:nth-child(odd)>td {
     background-color: #f9f9f9;
 }
 
-td {
+.blog-content td {
     padding: 8px;
     line-height: 1.42857143;
     border-top: 1px solid #ddd;
     vertical-align: top;
+}
+
+.blog-comment {
+    align-self: flex-start;
+    margin-left: 21.5vw;
+    margin-top: 1rem;
+}
+
+.comment-list {
+    margin: 1rem 0;
+}
+
+.comment-cell {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+    outline: solid 1px lightblue;
+}
+
+.comment-cell:nth-child(odd) img {
+    filter: opacity(0.5) drop-shadow(0 0 0 red);
+}
+
+.comment-cell:nth-child(even) img {
+    filter: opacity(0.5) drop-shadow(0 0 0 green);
+}
+
+.comment-cell span:nth-child(3) {
+    margin: 0 1rem;
+}
+
+.comment-cell span:nth-child(2) {
+    margin-left: -1.2rem;
+}
+
+footer {
+    margin: 1rem 0;
+}
+
+.line {
+    border: 1px solid #ccc;
+    width: 56vw;
+    align-self: flex-start;
 }

@@ -8,8 +8,7 @@ const bindEvent = (elm, eventName, callback) => {
     })
 }
 
-const bindAll = (selector, eventName, callback) => {
-    var elements = document.querySelectorAll(selector)
+const bindAll = (elements, eventName, callback) => {
     for (var i = 0; i < elements.length; i++) {
         var e = elements[i]
         bindEvent(e, eventName, callback)

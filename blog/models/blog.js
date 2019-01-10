@@ -17,7 +17,7 @@ class BlogModel {
             if (err) {
                 console.log(err);
             } else {
-                console.log('数据已经被写入 data.json');
+                console.log('数据已经被写入 blog.json');
             }
         })
     }
@@ -39,6 +39,13 @@ class BlogModel {
     deleteBlog(index) {
         return this.blogs.splice(index, 1)
     }
+
+    orderBlogs() {
+        for (let i = 0; i < this.blogs.length; i++) {
+            const blog = this.blogs[i]
+            blog['id'] = i + 1
+        }
+    }
 }
 
 
@@ -54,6 +61,6 @@ class Blog {
 
 
 module.exports = {
-    BlogModel: new BlogModel(),
+    blogModel: new BlogModel(),
     Blog: Blog
 }

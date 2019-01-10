@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const blogModel = require('../models/blog.js').BlogModel
+const blogModel = require('../models/blog.js').blogModel
 const Blog = require('../models/blog.js').Blog
+const commentModel = require('../models/comment.js').commentModel
 
 router.get('/all', (req, res) => {
     const blogs = blogModel.getBlogs()
@@ -30,7 +31,21 @@ router.get('/:id', (req, res) => {
     res.json(blog)
 })
 
+router.get('/:id/delete', (req, res) => {
+    const blogId = req.params.id
+    const index = blogId - 1
+    const deletedBlog = blogModel.deleteBlog(index)
 
-module.exports = {
-    router: router
-}
+    blogModel.orderBlogs()
+        // 写入数据文件中
+        // blogModel.saveBlogs()
+    res.json(deletedBlog)
+})
+
+router.get('/:id/comment', (req, res) => {
+    const blogId = req.params.id
+    const comments = commentModel.getCommentByBlogId(blogId)
+    res.json(comments)
+})
+
+module.exports = router

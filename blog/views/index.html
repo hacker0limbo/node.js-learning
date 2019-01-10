@@ -33,18 +33,21 @@
     </div>
 
     <div class="blog-container">
-        <!-- <div class="blog-cell">
-            <title>标题</title>
+        ${blogs.map(b => `
+        <div class="blog-cell">
+            <a href="/blog/${b.id}" class="blog-title">${b.title}</a>
             <div class="">
-                <span>作者</span> @ <time>时间</time>
+                <span>${b.author}</span> @ <time>${b.time}</time>
             </div>
-        </div> -->
+            <button class="blog-delete">删除</button>
+        </div>
+        `).join('')}
     </div>
+
     <script src="/js/dom_utils.js"></script>
-    <script src="/js/blog_template.js"></script>
     <script src="/js/blog_api.js"></script>
-    <script src="/js/controller.js"></script>
-    <script src="/js/main.js"></script>
+    <script src="/js/blog.js"></script>
+    <!-- <script src="/js/main.js"></script> -->
 </body>
 
 </html>
