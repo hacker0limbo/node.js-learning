@@ -9,7 +9,7 @@ node app.js
 
 ## 效果
 
-![demo](/demo.gif)
+![demo](demo/demo.gif)
 
 - 可以写博客并发布博客, 可以删除
 - 可以针对博客发布评论, 可以删除
