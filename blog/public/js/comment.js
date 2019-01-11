@@ -33,8 +33,7 @@ class DeleteButton {
         bindAll(this._elms, 'click', (event) => {
             const target = event.target
             const commentElm = target.parentNode
-            const index = Array.from(commentElm.parentNode.children).indexOf(commentElm)
-            const id = index + 1
+            const id = commentElm.dataset.id
             this.api.delete(id, (data) => {
                 // 更新数据以后刷新界面
                 window.location.reload()

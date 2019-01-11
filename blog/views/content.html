@@ -34,7 +34,7 @@
         <h3>评论列表</h3>
         <div class="comment-list">
             ${comments.map(c => `
-            <div class="comment-cell">
+            <div class="comment-cell" data-id="${c.id}" data-blog-id="${c.blog_id}">
                 <img src="/img/limbo.png" alt="user">
                 <span>${c.author}:</span>
                 <span>${c.content}</span>
