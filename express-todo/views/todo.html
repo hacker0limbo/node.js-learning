@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Todo list</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+  <div id="todo-table">
+    <form>
+      <input type="text" name="item" placeholder="Add new item..." required />
+      <button type="submit">Add Item</button>
+    </form>
+    <ul>
+    {% for todo in todos %}
+        <li>{{ todo.item }}</li>
+    {% endfor %}      
+    </ul>
+  </div>
+
+  <script src="/assets/todo-list.js"></script>
+</body>
+</html>
