@@ -1,0 +1,30 @@
+{% extends "layout.njk" %}
+
+{% block navbar %}
+  {% include "navbar.njk" %}
+{% endblock %}
+
+{% block header %}
+  <div class="container">
+    <h1>{{ article.title }}</h1>
+    <h5>Written by {{ article.author }}</h5>
+  </div>
+{% endblock %}
+
+{% block section %}
+  <div class="container">
+    <p>
+      {{ article.body }}
+    </p>
+    <hr>
+    <a class="btn btn-primary mr-2" href="/articles/{{ article.id }}/edit">Edit</a>
+    <!-- 注意这里的 delete 按钮无法直接点击以后用 get 方法来访问, 指定为 delete 方法只能使用 ajax 来发送请求 -->
+    <a class="btn btn-danger delete-article" href="#" data-id={{ article._id }}>Delete</a>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script src="/js/delete.js"></script>
+{% endblock %}
+

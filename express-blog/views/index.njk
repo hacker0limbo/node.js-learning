@@ -1,0 +1,25 @@
+{% extends "layout.njk" %}
+
+{% block navbar %}
+  {% include "navbar.njk" %}
+{% endblock %}
+
+{% block header %}
+  <div class="container">
+    <h1>Home</h1>
+    <h4>Articles</h4>
+  </div>
+{% endblock %}
+
+{% block section %}
+  <div class="container">
+    <ul class="list-group">
+    {% for article in articles %}
+      <li class="list-group-item">
+        <a href="/articles/{{ article._id }}" >{{ article.title }}</a>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
+

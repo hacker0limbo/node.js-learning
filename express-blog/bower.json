@@ -1,0 +1,21 @@
+{
+  "name": "express-blog",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Stephen <stephen.yin@outlook.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/hacker0limbo/node.js-learning",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^4.3.1"
+  }
+}

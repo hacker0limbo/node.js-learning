@@ -1,0 +1,7 @@
+<div id="messages">
+  {% for type, info in messages %}
+    {% for message in messages[type] %}
+      <div>{{ message }}</div>
+    {% endfor %}
+  {% endfor %}
+</div>

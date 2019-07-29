@@ -1,0 +1,32 @@
+{% extends "layout.njk" %}
+
+{% block navbar %}
+  {% include "navbar.njk" %}
+{% endblock %}
+
+{% block header %}
+  <div class="container">
+    <h1>Edit Article</h1>
+  </div>
+{% endblock %}
+
+{% block section %}
+  <div class="container">
+    <form method="POST", action="/articles/{{ article._id }}/update">
+      <div class="form-group">
+        <label>Title</label>
+        <input class="form-control" name="title" type="text" value={{ article.title }}>
+      </div>
+      <div class="form-group">
+        <label>Author</label>
+        <input class="form-control" name="author" type="text" value={{ article.author }}>
+      </div>
+      <div class="form-group">
+        <label>Body</label>
+        <textarea class="form-control" name="body">{{ article.body }}</textarea>
+      </div>
+      <input class="btn btn-primary" type="submit" value="submit">
+    </form>
+  </div>
+{% endblock %}
+

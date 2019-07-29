@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+  {% block navbar %}
+  {% endblock %}
+
+
+  {% block header %}
+  {% endblock %}
+
+  {{ messages('message.njk', locals) | safe }}
+
+  {% block section %}
+  {% endblock %}
+
+  <hr />
+  <footer class="container">
+    <p>
+      Copyright &copy; 2019
+    </p>
+  </footer>
+
+  {% block scripts %}
+  {% endblock %}
+
+</body>
+</html>
